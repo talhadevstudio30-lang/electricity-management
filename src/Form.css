@@ -1,0 +1,5 @@
+@media only screen and (max-height:803px) {
+    .Form-Main-Container {
+        height: auto;
+    }
+}
