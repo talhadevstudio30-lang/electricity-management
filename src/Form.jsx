@@ -11,9 +11,10 @@ function Form() {
     const [period, setPeriod] = useState(1);
     const [item_name, setItem_name] = useState('');
     const [results, setResults] = useState([]);
-    const [form_result, setForm_result] = useState('');
+    const [form_result, setForm_result] = useState(false);
     const [total_price, settotal_price] = useState('');
     const [custom_period, setcustom_period] = useState('');
+
 
     const custom_period_input = (e) => {
         setcustom_period(e.target.value);
@@ -98,11 +99,16 @@ function Form() {
     }
 
     const handleReset = () => {
-        setWatts('');
-        setHours('');
-        setUnit_price('');
-        setPeriod(0);
-        setItem_name('');
+        if (confirm('Are you sure you want to reset your data? 🗑️🤔')) {
+            setWatts('');
+            setHours('');
+            setUnit_price('');
+            setPeriod(1);
+            setItem_name('');
+            setcustom_period('');
+            setForm_result(false);
+        }
+
     }
 
     const getPeriodLabel = (val) => {
