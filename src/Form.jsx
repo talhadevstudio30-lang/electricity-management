@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
-import Results from './Results';
+import React, { useState, Suspense, lazy } from 'react';
+// import Results from './Results';
 import './Form.css';
+import FormResult from './FormResult';
+
+
+const Results = lazy(() => import('./Results'));
 
 
 function Form() {
@@ -12,7 +16,7 @@ function Form() {
     const [item_name, setItem_name] = useState('');
     const [results, setResults] = useState([]);
     const [form_result, setForm_result] = useState(false);
-    const [total_price, settotal_price] = useState('');
+    const [total_units, settotal_units] = useState('');
     const [custom_period, setcustom_period] = useState('');
 
 
@@ -66,10 +70,10 @@ function Form() {
         ];
         return colors[Math.floor(Math.random() * colors.length)];
     }
-
+    const [kwh_value, setkwh_value] = useState(false);
     const init = () => {
         const kwh = ((watts * hours * (period || custom_period)) / 1000);
-        console.log(`KWH: ${kwh}`);
+        setkwh_value(kwh)
         const calcResult = kwh * unit_price;
         const newResult = {
             id: Date.now(),
@@ -84,14 +88,27 @@ function Form() {
             totalprice: calcResult,
             color: getRandomColor()
         };
-        console.log(newResult);
         setResults([newResult, ...results]);
         setForm_result(calcResult);
-        console.log(form_result);
-        const totalprice = results.reduce((total, item) => total + Number(item.cost), 0) + calcResult;
+        if (calcResult === 0) {
+            setForm_result(false);
+            setunit_price_UI('text-start sm:text-center');
+        } else {
+            setcost_unit_value_btn('Units only');
+            setunit_price_UI('text-start');
+        }
+        const totalunits = results.reduce((total, item) => total + Number(item.kwh), 0) + kwh;
+        const totalprice = totalunits * unit_price;
         settotal_price(totalprice);
-        console.log(`Total:${totalprice}`);
+        settotal_units(totalunits);
+        if (newResult.cost === 0) {
+            newResult.cost = false;
+        }
+        setItem_name('');
+
     }
+    const [total_price, settotal_price] = useState(false);
+    const [unit_price_UI, setunit_price_UI] = useState('text-center');
 
     const submit = (e) => {
         e.preventDefault();
@@ -107,6 +124,7 @@ function Form() {
             setItem_name('');
             setcustom_period('');
             setForm_result(false);
+            setkwh_value(false);
         }
 
     }
@@ -125,24 +143,40 @@ function Form() {
     const [custom_input, setcustom_input] = useState(false);
 
     const custom_btn = () => {
-        console.log('Custom Button Clicked');
         if (!calculation_period) {
             setcalculation_period(true);
             setcustom_input(false);
             setcustom_period(0);
             setPeriod(1);
-            console.log('hi i am if condition')
         }
         else {
             setcalculation_period(false);
             setcustom_input(true);
             setcustom_period('');
             setPeriod(0);
-            console.log('i am else condition');
 
         }
     };
+    const [unit_price_input_body, setunit_price_input_body] = useState(false);
+    const [cost_unit_value_btn, setcost_unit_value_btn] = useState('Cost');
 
+    const form_info_btn = () => {
+        if (unit_price_input_body) {
+            setunit_price_input_body(false);
+            setcost_unit_value_btn('Cost');
+            setForm_result();
+            setUnit_price('');
+            setunit_price_UI('text-start sm:text-center');
+            settotal_price(false);
+        }
+        else {
+            setunit_price_input_body(true);
+            setcost_unit_value_btn('Units only');
+            setForm_result();
+            setUnit_price('')
+
+        }
+    }
 
 
     return (
@@ -250,33 +284,31 @@ function Form() {
                                     )}
                                 </div>
                                 <div>
-                                    <button type='button' className="w-full rounded-xl text-[16px] md:text-[18px] mb-0.4 mr-2.5  bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 md:py-3 px-3  transition-all duration-100" style={{ boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.3)" }} onClick={custom_btn}>{calculation_period ? 'Custom' : 'Period'}</button>
+                                    <button type='button' className="w-full rounded-2xl text-[16px] md:text-[18px] mb-0.4 mr-2.5  bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 md:py-3.5 px-3 md:px-3.5  transition-all duration-100" style={{ boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.3)" }} onClick={custom_btn}>{calculation_period ? 'Custom' : 'Period'}</button>
                                 </div>
                             </div>
-                            {/* Unit Price */}
-                            <div className="space-y-1">
-                                <label className="text-sm md:text-[18px] font-medium text-slate-600 ml-1">Unit Price</label>
-                                <input
-                                    type="number"
-                                    placeholder="e.g. 0.15"
-                                    value={unit_price}
-                                    onChange={unit_price_input}
-                                    className=" mt-1.5 w-full px-4 py-3 rounded-2xl bg-white/50 border border-white/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none  md:text-xl focus:border-2 transition-all placeholder:text-slate-400 text-slate-700 shadow-sm"
-                                    required style={{ boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.3)" }}
-                                />
-                            </div>
-                            {/* Result Display */}
-                            {form_result && (
-                                <div className="grid justify-center items-center">
-                                    <div className="p-4 px-7 text-2xl md:text-3xl rounded-3xl bg-blue-50 border border-blue-200  text-blue-800 font-medium text-center animate-fade-in" style={{ boxShadow: "0px 0px 5px rgba(0, 123, 255, 0.4)" }}>
-                                        <h3 className="text-xl md:text-2xl text-blue-500 mb-1">Estimated Cost</h3>
-                                        <p className="text-2xl md:text-3xl font-semibold text-blue-600">{form_result}</p>
+                            {unit_price_input_body && (
+                                <div>
+                                    {/* Unit Price */}
+                                    <div className="space-y-1">
+                                        <label className="text-sm md:text-[18px] font-medium text-slate-600 ml-1">Unit Price</label>
+                                        <input
+                                            type="number"
+                                            placeholder="e.g. 0.15"
+                                            value={unit_price}
+                                            onChange={unit_price_input}
+                                            className=" mt-1.5 w-full px-4 py-3 rounded-2xl bg-white/50 border border-white/50 focus:border-blue-400 focus:ring-2 focus:ring-blue-200 focus:outline-none  md:text-xl focus:border-2 transition-all placeholder:text-slate-400 text-slate-700 shadow-sm"
+                                            required style={{ boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.3)" }}
+                                        />
                                     </div>
                                 </div>
                             )}
 
+                            {/* Result Display */}
+                            <FormResult form_result={form_result} kwh_value={kwh_value} form_info_btn={form_info_btn} cost_unit_value_btn={cost_unit_value_btn} unit_price_UI={unit_price_UI} />
+
                             {/* Buttons */}
-                            <div className="pt-2 flex gap-3">
+                            <div className="pt- flex gap-3">
                                 <button type="submit" className="flex-1 py-3 px-6 rounded-full sm:rounded-2xl bg-linear-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold shadow-lg md:text-xl shadow-blue-500/30 transform transition-all hover:-translate-y-0.5 active:translate-y-0">
                                     Calculate
                                 </button>
@@ -291,10 +323,12 @@ function Form() {
             </div>
             {/* Results Section */}
             <div>
-                <Results results={results} getPeriodLabel={getPeriodLabel} total_price={total_price} />
+                <Suspense fallback={<div className='flex justify-center items-center h-20 text-xl font-bold text-slate-800'>Loading Results...</div>}>
+                    <Results results={results} getPeriodLabel={getPeriodLabel} total_units={total_units} total_price={total_price} />
+                </Suspense>
             </div>
         </div>
     )
 }
 
-export default Form
+export default Form;

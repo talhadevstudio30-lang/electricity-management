@@ -3,3 +3,9 @@
         height: auto;
     }
 }
+
+@media only screen and (max-width:696px) {
+    .Form-Main-Container {
+        width: 100%;
+    }
+}
