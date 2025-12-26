@@ -45,29 +45,51 @@ function Form() {
 
     const getRandomColor = () => {
         const colors = [
+            // neutrals
             'bg-slate-200 bg-opacity-10 border-slate-200 text-slate-800',
             'bg-gray-200 bg-opacity-10 border-gray-200 text-gray-800',
             'bg-zinc-200 bg-opacity-10 border-zinc-200 text-zinc-800',
             'bg-neutral-200 bg-opacity-10 border-neutral-200 text-neutral-800',
             'bg-stone-200 bg-opacity-10 border-stone-200 text-stone-800',
+
+            // reds & warms
             'bg-red-200 bg-opacity-10 border-red-200 text-red-800',
+            'bg-rose-200 bg-opacity-10 border-rose-200 text-rose-800',
+            'bg-pink-200 bg-opacity-10 border-pink-200 text-pink-800',
+            'bg-fuchsia-200 bg-opacity-10 border-fuchsia-200 text-fuchsia-800',
+
+            // oranges & yellows
             'bg-orange-200 bg-opacity-10 border-orange-200 text-orange-800',
             'bg-amber-200 bg-opacity-10 border-amber-200 text-amber-800',
-            'bg-yellow-200 bg-opacity-12 border-yellow-200 text-yellow-800',
+            'bg-yellow-200 bg-opacity-10 border-yellow-200 text-yellow-800',
+
+            // greens
             'bg-lime-200 bg-opacity-10 border-lime-200 text-lime-800',
             'bg-green-200 bg-opacity-10 border-green-200 text-green-800',
             'bg-emerald-200 bg-opacity-10 border-emerald-200 text-emerald-800',
             'bg-teal-200 bg-opacity-10 border-teal-200 text-teal-800',
+
+            // blues
             'bg-cyan-200 bg-opacity-10 border-cyan-200 text-cyan-800',
             'bg-sky-200 bg-opacity-10 border-sky-200 text-sky-800',
             'bg-blue-200 bg-opacity-10 border-blue-200 text-blue-800',
             'bg-indigo-200 bg-opacity-10 border-indigo-200 text-indigo-800',
+
+            // purples
             'bg-violet-200 bg-opacity-10 border-violet-200 text-violet-800',
             'bg-purple-200 bg-opacity-10 border-purple-200 text-purple-800',
-            'bg-fuchsia-200 bg-opacity-10 border-fuchsia-200 text-fuchsia-800',
-            'bg-pink-200 bg-opacity-10 border-pink-200 text-pink-800',
-            'bg-rose-200 bg-opacity-10 border-rose-200 text-rose-800',
+
+            // EXTRA UI-SAFE ADDITIONS (still same form)
+            'bg-red-100 bg-opacity-10 border-red-100 text-red-700',
+            'bg-orange-100 bg-opacity-10 border-orange-100 text-orange-700',
+            'bg-yellow-100 bg-opacity-10 border-yellow-100 text-yellow-700',
+            'bg-green-100 bg-opacity-10 border-green-100 text-green-700',
+            'bg-blue-100 bg-opacity-10 border-blue-100 text-blue-700',
+            'bg-purple-100 bg-opacity-10 border-purple-100 text-purple-700',
+            'bg-pink-100 bg-opacity-10 border-pink-100 text-pink-700',
+            'bg-teal-100 bg-opacity-10 border-teal-100 text-teal-700',
         ];
+
         return colors[Math.floor(Math.random() * colors.length)];
     }
     const [kwh_value, setkwh_value] = useState(false);
@@ -104,8 +126,10 @@ function Form() {
         if (newResult.cost === 0) {
             newResult.cost = false;
         }
+        setWatts('');
+        setHours('');
+        setUnit_price('');
         setItem_name('');
-
     }
     const [total_price, settotal_price] = useState(false);
     const [unit_price_UI, setunit_price_UI] = useState('text-center');

@@ -82,7 +82,7 @@ function Info({ total_units, results, total_price }) {
                         <div className="flex md:flex-row md:justify-center justify-center items-center gap-4 mb-6 w-full">
 
                             <div className="bg-linear-to-br cursor-pointer from-blue-500 to-blue-600 rounded-3xl p-5 md:p-6 w-full sm:w-[45%] border lg:max-w-xl  border-blue-500/30 text-white shadow-lg shadow-blue-500/30 duration-100 transform transition-all hover:scale-[1.01]">
-                                <p className="text-blue-100 wrap-anywhere text-md sm:text-xl font-medium mb-1">Total Price</p>
+                                <p className="text-blue-100 wrap-anywhere text-md sm:text-xl font-medium mb-1">Total Price of All Items</p>
                                 {(total_price >= 0 || calculatedPrice !== null) && (
                                     <>
                                         <p className="text-3xl wrap-anywhere cursor-auto md:text-4xl font-bold">
@@ -91,7 +91,7 @@ function Info({ total_units, results, total_price }) {
                                     </>
                                 )}
                                 <div className='flex justify-start items-center'>
-                                    <div className={`px-1.5 py-1.5 bg-white mt-2`} style={{ borderRadius: '16px' }}>
+                                    <div className={`px-1 py-1 bg-white mt-2`} style={{ borderRadius: '16px' }}>
                                         <button className='wrap-anywhere text-md sm:text-xl font-medium bg-blue-500 text-blue border-2 border-blue-500 transition-all duration-75 rounded-xl px-2 py-1 text-sm md:text-md lg:text-lg hover:bg-white hover:text-blue-400' onClick={handleTotalPriceInfo}>
                                             Calculate Total Price
                                         </button>
