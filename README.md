@@ -474,13 +474,13 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 **Project Maintainer:** Talha Javed
 
 - GitHub: [M Talha Javed](https://github.com/talhadevstudio30-lang)
-- Email: your.email@example.com
+- Email: talhadevstudio30@gmail.com
 
 **Project Link:** [https://adevt-electric.vercel.app/](https://github.com/talhadevstudio30-lang/electricity-management)
 
 ---
 
-## 🙏 Acknowledgments
+# Acknowledgments
 
 - [React](https://react.dev/) - The amazing UI library
 - [Vite](https://vite.dev/) - Lightning-fast build tool
