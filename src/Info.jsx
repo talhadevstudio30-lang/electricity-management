@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react'
 function Info({ total_units, results, total_price }) {
 
     const [info, setinfo] = useState(false)
-    const [calculatedPrice, setCalculatedPrice] = useState()
+    const [calculatedPrice, setCalculatedPrice] = useState(0);
 
     const handleTotalPriceInfo = () => {
         const unitPrice = prompt("Please enter the unit price:", "0");
