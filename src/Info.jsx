@@ -14,8 +14,10 @@ function Info({ total_units, results, total_price }) {
                 setCalculatedPrice(calculatedValue);
                 if (results.length === 0) {
                     alert("⚠️ Oops! Please add some items to the form 📝 before calculating the total 💰");
-
-                } else {
+                } else if (unitPrice == "0") {
+                    alert("⚠️ Oops! Please enter a valid number.");
+                }
+                else {
                     alert(`🎉 Congratulations! The total price for all items is ${calculatedValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
                 }
             } else {
