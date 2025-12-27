@@ -12,7 +12,7 @@ function Info({ total_units, results, total_price }) {
             if (!isNaN(price)) {
                 const calculatedValue = total_units * price;
                 setCalculatedPrice(calculatedValue);
-                if (total_units === 0) {
+                if (results.length === 0) {
                     alert("⚠️ Oops! Please add some items to the form 📝 before calculating the total 💰");
 
                 } else {
@@ -36,7 +36,7 @@ function Info({ total_units, results, total_price }) {
     return (
         <>
             <div>
-                <div className='mt-14 lg:max-w-4xl mx-auto'>
+                <div className='mt-14 lg:max-w-4xl mx-auto sm:px-30 px-0'>
                     <div className="flex mb-2.5 items-center justify-between gap-2 px-1.5">
                         <h2 className="text-3xl md:text-4xl font-semibold text-slate-800 sticky top-0 bg-white/0 backdrop-blur-sm py-2 text-wrap mr-2">
                             Estimated History
