@@ -21,7 +21,7 @@ function Results({ results, getPeriodLabel, total_units, total_price, }) {
                             <p className="text-sm md:text-base">Fill the form to see results here</p>
                         </div>
                     ) : (
-                        <div className="mt-5.5 flex border-2 justify-center items-center flex-wrap">
+                        <div className="mt-5.5 flex justify-center items-center flex-wrap">
                             {results.map((res) => (
                                 <div key={res.id} data-aos="fade-up" className="m-3.5 md:w-xl w-full">
                                     <div className={`relative cursor-pointer p-5 w-full h-full rounded-4xl border border-white/20 shadow-lg backdrop-blur-md duration-200 transform transition-all hover:scale-[1.03] ${res.color}`}>
