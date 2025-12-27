@@ -21,7 +21,7 @@ function Info({ total_units, results, total_price }) {
                     alert(`🎉 Congratulations! The total price for all items is ${calculatedValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`);
                 }
             } else {
-                alert("Please enter a valid number.");
+                alert("⚠️ Oops! Please enter a valid number.");
             }
         }
     }
