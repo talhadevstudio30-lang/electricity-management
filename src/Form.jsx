@@ -128,7 +128,6 @@ function Form() {
         }
         setWatts('');
         setHours('');
-        setUnit_price('');
         setItem_name('');
     }
     const [total_price, settotal_price] = useState(false);
@@ -204,7 +203,7 @@ function Form() {
 
 
     return (
-        <div className="min-h-screen w-full flex flex-col items-center justify-start bg-linear-to-r from-blue-100 via-white to-blue-50 p-4 overflow-y-auto">
+        <div className="min-h-screen w-full flex flex-col items-center justify-start bg-[#F8FAFC] sm:bg-linear-to-r sm:from-blue-100 sm:via-white sm:to-blue-50 p-4 overflow-y-auto">
             {/* Background Decorative Elements */}
             <div className="fixed top-20 left-20 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob -z-10"></div>
             <div className="fixed top-20 right-20 w-72 h-72 bg-cyan-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000 -z-10"></div>
@@ -213,15 +212,35 @@ function Form() {
             <div className="Form-Main-Container w-full sm:w-2xl h-[97vh] sm:h-auto grid items-center justify-center mt-0 sm:mt-10">
 
                 {/* Form Section */}
-                <div className="relative w-full bg-white/30 backdrop-blur-xl border border-white/40 shadow-2xl rounded-4xl mt-10 overflow-hidden">
-                    <div className="px-6 py-6">
-
-                        <h1 className="text-3xl md:text-4xl font-semibold text-center text-slate-800 mb-2">
-                            Energy Cost Estimator
-                        </h1>
-                        <p className="text-center md:text-xl text-slate-500 mb-8">
-                            Calculate your device consumption
-                        </p>
+                <div className='block sm:hidden mb-2'>
+                    <div className="flex justify-between items-center">
+                        <div>
+                            <h1 className="text-2xl text-start font-semibold text-slate-800">
+                                Energy Estimator
+                            </h1>
+                            <p className="text-start text-md text-slate-500">
+                                Track consumption & save costs
+                            </p>
+                        </div>
+                        <div className="flex justify-center items-center px-4.5">
+                            <div className='rounded-full p-2 bg-white shadow-[0px_0px_5px_rgba(0,0,0,0.1)]'>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-7 h-7 text-blue-500 rounded-full bg-[#FFFFFF]">
+                                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="relative w-full bg-[#FFFFFF] sm:bg-white/30 backdrop-blur-xl border border-white/40 shadow-[0px_0px_10px_rgba(0,0,0,0.1)] sm:shadow-2xl rounded-4xl mt-2 sm:mt-10 overflow-hidden">
+                    <div className="sm:px-6 py-4.5 px-4.5 sm:py-6">
+                        <div className='hidden sm:block'>
+                            <h1 className="text-3xl md:text-4xl font-semibold text-center text-slate-800 mb-2">
+                                Energy Estimator
+                            </h1>
+                            <p className="text-center md:text-xl text-slate-500 mb-8">
+                                Track consumption & save costs
+                            </p>
+                        </div>
 
                         <form onSubmit={submit} className="space-y-5">
 
@@ -332,12 +351,18 @@ function Form() {
                             <FormResult form_result={form_result} kwh_value={kwh_value} form_info_btn={form_info_btn} cost_unit_value_btn={cost_unit_value_btn} unit_price_UI={unit_price_UI} />
 
                             {/* Buttons */}
-                            <div className="pt- flex gap-3">
-                                <button type="submit" className="flex-1 py-3 px-6 rounded-full sm:rounded-2xl bg-linear-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold shadow-lg md:text-xl shadow-blue-500/30 transform transition-all hover:-translate-y-0.5 active:translate-y-0">
+                            <div className="flex flex-wrap-reverse sm:flex-nowrap gap-3">
+                                <button type="submit" className="flex-1 py-3 px-6 rounded-full sm:rounded-2xl bg-linear-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold shadow-lg md:text-xl shadow-blue-500/30 transform transition-all hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2">
                                     Calculate
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                                    </svg>
                                 </button>
-                                <button type="button" onClick={handleReset} className="flex-1 py-3 px-6 rounded-full text-gray-50 font-semibold border sm:rounded-2xl border-white/60 shadow-md bg-gray-400 hover:bg-gray-500 transform transition-all md:text-xl hover:-translate-y-0.5 active:translate-y-0 ">
+                                <button type="button" onClick={handleReset} className="flex-1 py-3 px-6 rounded-full text-gray-50 font-semibold border sm:rounded-2xl border-white/60 shadow-md bg-gray-400 hover:bg-gray-500 transform transition-all md:text-xl hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 ">
                                     Reset
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
+                                    </svg>
                                 </button>
                             </div>
 
@@ -351,7 +376,7 @@ function Form() {
                     <Results results={results} getPeriodLabel={getPeriodLabel} total_units={total_units} total_price={total_price} />
                 </Suspense>
             </div>
-        </div>
+        </div >
     )
 }
 
