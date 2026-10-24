@@ -1,1 +1,40 @@
 @import "tailwindcss";
+
+@theme {
+  --font-sans: 'Nunito', 'Segoe UI', sans-serif;
+}
+
+@layer base {
+  html {
+    min-width: 320px;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+    color: #24344c;
+    font-family: var(--font-sans);
+    font-optical-sizing: auto;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  button,
+  a,
+  input,
+  select {
+    &:focus-visible {
+      outline: 3px solid rgba(81, 116, 229, 0.35);
+      outline-offset: 2px;
+    }
+  }
+
+  ::selection {
+    color: #263c75;
+    background: #dbe5ff;
+  }
+}

@@ -69,6 +69,10 @@ Perfect for homeowners, renters, students, or anyone looking to understand and m
 - **Device History**: View all calculated devices in an organized history section
 - **Colorful Cards**: Each device gets a unique, randomly assigned color theme
 - **Total Statistics**: See cumulative totals for units and costs
+- **Persistent History**: Estimates are saved locally in your browser
+- **Search & Sort**: Find appliances by name or sort by energy usage
+- **CSV Export**: Download the visible history for your own records
+- **Per-item Rates**: Cost totals include only estimates with their own entered rate
 - **Detailed Information**: Each card shows:
   - Item name
   - Power consumption (Watts)
@@ -80,6 +84,7 @@ Perfect for homeowners, renters, students, or anyone looking to understand and m
 ### 🎨 User Experience
 
 - **Glassmorphism Design**: Modern, elegant UI with backdrop blur effects
+- **Interactive Feedback**: Live estimates, animated cards, focus states, and responsive layouts
 - **Smooth Animations**: Beautiful transitions powered by AOS (Animate On Scroll)
 - **Loading States**: Elegant loading indicators with bouncing animations
 - **Responsive Layout**: Perfectly adapts to any screen size
@@ -114,6 +119,40 @@ Perfect for homeowners, renters, students, or anyone looking to understand and m
 > - Results display
 > - History section
 > - Mobile responsive view
+
+## 🗂️ Project Structure
+
+```text
+electricity-management/
+├── public/                           # Files served as-is from the site root
+│   ├── AppIcon.png                   # Browser/app icon
+│   └── app-thumnail.webp             # Social preview image
+├── src/
+│   ├── assets/                       # Assets imported and bundled by Vite
+│   ├── features/
+│   │   └── energy-dashboard/         # Energy calculator feature boundary
+│   │       ├── components/
+│   │       │   ├── ApplianceForm.jsx     # Calculator inputs and live estimate
+│   │       │   ├── ApplianceHistory.jsx  # Search, sort, export, and history list
+│   │       │   ├── DashboardHeader.jsx   # Brand and privacy status
+│   │       │   └── SummaryCards.jsx      # Usage, cost, and appliance metrics
+│   │       ├── hooks/
+│   │       │   └── useEnergyHistory.js   # Local history state and persistence
+│   │       ├── utils/
+│   │       │   └── energy.js             # Energy calculations and formatting
+│   │       └── EnergyDashboard.jsx       # Composes layout with Tailwind utilities
+│   ├── App.jsx                       # Root application component
+│   └── index.css                     # Tailwind import and minimal global base styles
+│   └── main.jsx                      # React application bootstrap
+├── index.html                        # HTML document and page metadata
+├── package.json                      # Dependencies and npm scripts
+├── package-lock.json                 # Exact npm dependency versions
+├── .gitignore                        # Excluded generated and local files
+├── eslint.config.js                  # ESLint configuration
+└── vite.config.js                    # Vite build and development configuration
+```
+
+History is stored in the browser's local storage and is not sent to a server.
 
 ---
 
