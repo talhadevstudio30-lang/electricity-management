@@ -20,8 +20,8 @@ function EnergyDashboard() {
 
         <section className="mb-[30px] grid grid-cols-[minmax(0,1.4fr)_minmax(250px,0.6fr)] items-end gap-8 max-[900px]:grid-cols-[minmax(0,1fr)_220px] max-sm:mb-[22px] max-sm:grid-cols-1 max-sm:gap-[17px]">
           <div>
-            <p className="mb-[10px] text-xs font-extrabold uppercase tracking-[0.16em] text-[#5579dc]">Your energy, made clearer</p>
-            <h1 className="m-0 max-w-[680px] text-[clamp(2.15rem,5vw,3.65rem)] font-extrabold leading-[1.04] tracking-[-0.065em] text-[#17243a]">
+            <p className="mb-[10px] text-xs font-bold uppercase tracking-[0.16em] text-[#5579dc]">Your energy, made clearer</p>
+            <h1 className="m-0 max-w-[680px] text-[clamp(2.15rem,5vw,3.65rem)] font-bold leading-[1.04] tracking-[-0.065em] text-[#17243a]">
               Small changes.<br />Smarter energy choices.
             </h1>
             <p className="mb-0 mt-4 max-w-[590px] text-base leading-[1.7] text-[#738097]">

@@ -64,7 +64,7 @@ function ApplianceHistory({ items, onRemove, onClear, storageError }) {
     <section className="mt-5 rounded-[26px] border border-[#e5ebf4] bg-white p-[26px] shadow-[0_8px_24px_rgba(39,65,107,0.06)] max-sm:rounded-[22px] max-sm:p-[20px_17px]" id="history" aria-labelledby="history-title">
       <div className="mb-[19px] flex items-center justify-between gap-[18px] max-sm:flex-col max-sm:items-start">
         <div>
-          <h2 className="m-0 text-[1.2rem] font-extrabold tracking-[-0.035em] text-[#1b2a40]" id="history-title">Appliance history</h2>
+          <h2 className="m-0 text-[1.2rem] font-bold tracking-[-0.035em] text-[#1b2a40]" id="history-title">Appliance history</h2>
           <p className="mb-0 mt-[5px] text-[0.82rem] text-[#8491a4]">Your estimates stay saved in this browser.</p>
         </div>
         <div className="flex items-center gap-[9px] max-sm:grid max-sm:w-full max-sm:grid-cols-[minmax(0,1fr)_auto]">

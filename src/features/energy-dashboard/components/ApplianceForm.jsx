@@ -46,7 +46,7 @@ function ApplianceForm({ onAdd }) {
     <section className="rounded-[26px] border border-[#e5ebf4] bg-white p-[27px] shadow-[0_8px_24px_rgba(39,65,107,0.06)] max-sm:rounded-[22px] max-sm:p-[20px_17px]" aria-labelledby="calculator-title">
       <div className="mb-[23px] flex items-start justify-between gap-4">
         <div>
-          <h2 className="m-0 text-[1.2rem] font-extrabold tracking-[-0.035em] text-[#1b2a40]" id="calculator-title">Add an appliance</h2>
+          <h2 className="m-0 text-[1.2rem] font-bold tracking-[-0.035em] text-[#1b2a40]" id="calculator-title">Add an appliance</h2>
           <p className="mb-0 mt-[5px] text-[0.84rem] text-[#8290a4]">Create an estimate for a device</p>
         </div>
         <span className="grid size-10 shrink-0 place-items-center rounded-[14px] bg-[#edf2ff] text-[#4b6fe1] [&_svg]:size-[19px]" aria-hidden="true">
@@ -191,7 +191,7 @@ function ApplianceForm({ onAdd }) {
           </div>
         </div>
 
-        <button className="flex min-h-[51px] cursor-pointer items-center justify-center gap-[9px] rounded-[15px] border-0 bg-gradient-to-r from-[#5278e6] to-[#695cdb] text-[0.92rem] font-extrabold text-white shadow-[0_8px_18px_rgba(89,105,222,0.2)] transition-colors hover:from-[#466bd5] hover:to-[#5d50cc] active:translate-y-0 [&_svg]:size-[18px]" type="submit">
+        <button className="flex min-h-[51px] cursor-pointer items-center justify-center gap-[9px] rounded-[15px] border-0 bg-gradient-to-r from-[#5278e6] to-[#695cdb] text-[0.92rem] font-bold text-white shadow-[0_8px_18px_rgba(89,105,222,0.2)] transition-colors hover:from-[#466bd5] hover:to-[#5d50cc] active:translate-y-0 [&_svg]:size-[18px]" type="submit">
           Add estimate
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
