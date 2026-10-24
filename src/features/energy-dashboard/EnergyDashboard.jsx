@@ -1,3 +1,4 @@
+import { memo, useMemo } from 'react'
 import ApplianceForm from './components/ApplianceForm'
 import ApplianceHistory from './components/ApplianceHistory'
 import DashboardHeader from './components/DashboardHeader'
@@ -6,16 +7,13 @@ import { useEnergyHistory } from './hooks/useEnergyHistory'
 
 function EnergyDashboard() {
   const { items, error, addItem, removeItem, clearItems } = useEnergyHistory()
-  const totalEnergy = items.reduce((sum, item) => sum + item.kwh, 0)
-  const totalCost = items.reduce((sum, item) => (
-    sum + (Number.isFinite(item.cost) ? item.cost : 0)
-  ), 0)
+  const { totalEnergy, totalCost } = useMemo(() => items.reduce((totals, item) => ({
+    totalEnergy: totals.totalEnergy + item.kwh,
+    totalCost: totals.totalCost + (Number.isFinite(item.cost) ? item.cost : 0),
+  }), { totalEnergy: 0, totalCost: 0 }), [items])
 
   return (
-    <main className="relative isolate min-h-screen overflow-hidden bg-[radial-gradient(ellipse_at_16%_5%,rgba(224,235,255,0.8),transparent_35%),radial-gradient(ellipse_at_92%_43%,rgba(224,247,240,0.6),transparent_30%),#f4f7fc]">
-      <div className="pointer-events-none fixed -left-36 -top-40 -z-10 size-[25rem] animate-pulse rounded-full bg-blue-300/60 blur-[90px] motion-reduce:animate-none" aria-hidden="true" />
-      <div className="pointer-events-none fixed -right-48 top-56 -z-10 size-[25rem] animate-pulse rounded-full bg-emerald-200/60 blur-[90px] [animation-delay:2s] motion-reduce:animate-none" aria-hidden="true" />
-      <div className="pointer-events-none fixed -bottom-64 left-[28%] -z-10 size-[25rem] animate-pulse rounded-full bg-violet-200/60 blur-[90px] [animation-delay:4s] motion-reduce:animate-none" aria-hidden="true" />
+    <main className="relative min-h-screen overflow-hidden bg-[linear-gradient(135deg,#f2f6ff_0%,#f8faff_48%,#f1f8f5_100%)]">
 
       <div className="mx-auto w-[min(1160px,calc(100%-40px))] pb-16 pt-7 max-sm:w-[calc(100%-24px)] max-sm:pt-[17px]">
         <DashboardHeader />
@@ -30,7 +28,7 @@ function EnergyDashboard() {
               Estimate what your everyday appliances use, keep a running history, and make more informed choices at home.
             </p>
           </div>
-          <aside className="max-w-[275px] justify-self-end rounded-[20px] border border-white/80 bg-white/70 p-[17px_19px] text-[0.83rem] leading-[1.55] text-[#536783] shadow-[0_24px_80px_rgba(39,65,107,0.09)] backdrop-blur-[22px] max-sm:max-w-none max-sm:justify-self-stretch">
+          <aside className="max-w-[275px] justify-self-end rounded-[20px] border border-[#e5ebf4] bg-white p-[17px_19px] text-[0.83rem] leading-[1.55] text-[#536783] shadow-[0_8px_24px_rgba(39,65,107,0.06)] max-sm:max-w-none max-sm:justify-self-stretch">
             <strong className="mb-1 block text-[0.9rem] text-[#253954]">A clearer picture starts here</strong>
             Energy estimates use your device power, hours used per day, and selected period.
           </aside>
@@ -53,4 +51,4 @@ function EnergyDashboard() {
   )
 }
 
-export default EnergyDashboard
+export default memo(EnergyDashboard)

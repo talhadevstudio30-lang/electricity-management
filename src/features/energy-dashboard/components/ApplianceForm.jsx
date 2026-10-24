@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { memo, useState } from 'react'
 import { calculateEnergy, formatNumber, PERIODS } from '../utils/energy'
 
 function ApplianceForm({ onAdd }) {
@@ -43,7 +43,7 @@ function ApplianceForm({ onAdd }) {
   }
 
   return (
-    <section className="rounded-[26px] border border-white/80 bg-white/70 p-[27px] shadow-[0_24px_80px_rgba(39,65,107,0.09)] backdrop-blur-[22px] max-sm:rounded-[22px] max-sm:p-[20px_17px]" aria-labelledby="calculator-title">
+    <section className="rounded-[26px] border border-[#e5ebf4] bg-white p-[27px] shadow-[0_8px_24px_rgba(39,65,107,0.06)] max-sm:rounded-[22px] max-sm:p-[20px_17px]" aria-labelledby="calculator-title">
       <div className="mb-[23px] flex items-start justify-between gap-4">
         <div>
           <h2 className="m-0 text-[1.2rem] font-extrabold tracking-[-0.035em] text-[#1b2a40]" id="calculator-title">Add an appliance</h2>
@@ -61,7 +61,7 @@ function ApplianceForm({ onAdd }) {
           <label className="mb-[7px] block text-[0.8rem] font-bold text-[#52627a]" htmlFor="device-name">Appliance name</label>
           <input
             autoComplete="off"
-            className="min-h-12 w-full rounded-[14px] border border-[#e4eaf2] bg-white/80 px-[14px] text-[0.9rem] text-[#24344c] outline-none transition-all placeholder:text-[#a5afbd] hover:border-[#c8d4ee] hover:bg-white focus:border-[#7694ed] focus:bg-white focus:ring-4 focus:ring-[#5d7de2]/[0.13]"
+            className="min-h-12 w-full rounded-[14px] border border-[#e4eaf2] bg-white px-[14px] text-[0.9rem] text-[#24344c] outline-none transition-colors placeholder:text-[#a5afbd] hover:border-[#c8d4ee] focus:border-[#7694ed] focus:ring-4 focus:ring-[#5d7de2]/[0.13]"
             id="device-name"
             maxLength={60}
             onChange={(event) => setItemName(event.target.value)}
@@ -75,7 +75,7 @@ function ApplianceForm({ onAdd }) {
           <div>
             <label className="mb-[7px] block text-[0.8rem] font-bold text-[#52627a]" htmlFor="device-watts">Power (watts)</label>
             <input
-              className="min-h-12 w-full rounded-[14px] border border-[#e4eaf2] bg-white/80 px-[14px] text-[0.9rem] text-[#24344c] outline-none transition-all placeholder:text-[#a5afbd] hover:border-[#c8d4ee] hover:bg-white focus:border-[#7694ed] focus:bg-white focus:ring-4 focus:ring-[#5d7de2]/[0.13]"
+              className="min-h-12 w-full rounded-[14px] border border-[#e4eaf2] bg-white px-[14px] text-[0.9rem] text-[#24344c] outline-none transition-colors placeholder:text-[#a5afbd] hover:border-[#c8d4ee] focus:border-[#7694ed] focus:ring-4 focus:ring-[#5d7de2]/[0.13]"
               id="device-watts"
               max="1000000"
               min="0.01"
@@ -90,7 +90,7 @@ function ApplianceForm({ onAdd }) {
           <div>
             <label className="mb-[7px] block text-[0.8rem] font-bold text-[#52627a]" htmlFor="device-hours">Hours per day</label>
             <input
-              className="min-h-12 w-full rounded-[14px] border border-[#e4eaf2] bg-white/80 px-[14px] text-[0.9rem] text-[#24344c] outline-none transition-all placeholder:text-[#a5afbd] hover:border-[#c8d4ee] hover:bg-white focus:border-[#7694ed] focus:bg-white focus:ring-4 focus:ring-[#5d7de2]/[0.13]"
+              className="min-h-12 w-full rounded-[14px] border border-[#e4eaf2] bg-white px-[14px] text-[0.9rem] text-[#24344c] outline-none transition-colors placeholder:text-[#a5afbd] hover:border-[#c8d4ee] focus:border-[#7694ed] focus:ring-4 focus:ring-[#5d7de2]/[0.13]"
               id="device-hours"
               max="24"
               min="0.01"
@@ -112,7 +112,7 @@ function ApplianceForm({ onAdd }) {
             {customPeriod ? (
               <input
                 autoFocus
-                className="min-h-12 w-full rounded-[14px] border border-[#e4eaf2] bg-white/80 px-[14px] text-[0.9rem] text-[#24344c] outline-none transition-all placeholder:text-[#a5afbd] hover:border-[#c8d4ee] hover:bg-white focus:border-[#7694ed] focus:bg-white focus:ring-4 focus:ring-[#5d7de2]/[0.13]"
+                className="min-h-12 w-full rounded-[14px] border border-[#e4eaf2] bg-white px-[14px] text-[0.9rem] text-[#24344c] outline-none transition-colors placeholder:text-[#a5afbd] hover:border-[#c8d4ee] focus:border-[#7694ed] focus:ring-4 focus:ring-[#5d7de2]/[0.13]"
                 id="calculation-period"
                 max="36500"
                 min="1"
@@ -125,7 +125,7 @@ function ApplianceForm({ onAdd }) {
               />
             ) : (
               <select
-                className="min-h-12 w-full cursor-pointer rounded-[14px] border border-[#e4eaf2] bg-white/80 px-[14px] text-[0.9rem] text-[#24344c] outline-none transition-all hover:border-[#c8d4ee] hover:bg-white focus:border-[#7694ed] focus:bg-white focus:ring-4 focus:ring-[#5d7de2]/[0.13]"
+                className="min-h-12 w-full cursor-pointer rounded-[14px] border border-[#e4eaf2] bg-white px-[14px] text-[0.9rem] text-[#24344c] outline-none transition-colors hover:border-[#c8d4ee] focus:border-[#7694ed] focus:ring-4 focus:ring-[#5d7de2]/[0.13]"
                 id="calculation-period"
                 onChange={(event) => setPeriod(event.target.value)}
                 value={period}
@@ -136,12 +136,12 @@ function ApplianceForm({ onAdd }) {
               </select>
             )}
           </div>
-          <button className="min-h-[46px] cursor-pointer whitespace-nowrap rounded-[13px] border border-[#dbe4f5] bg-[#f2f6ff]/80 px-[13px] text-[0.79rem] font-bold text-[#5471ca] transition hover:-translate-y-px hover:bg-[#e9efff]" onClick={toggleCustomPeriod} type="button">
+          <button className="min-h-[46px] cursor-pointer whitespace-nowrap rounded-[13px] border border-[#dbe4f5] bg-[#f2f6ff] px-[13px] text-[0.79rem] font-bold text-[#5471ca] transition-colors hover:bg-[#e9efff]" onClick={toggleCustomPeriod} type="button">
             {customPeriod ? 'Use preset' : 'Custom days'}
           </button>
         </div>
 
-        <label className="flex cursor-pointer items-center gap-[11px] rounded-[15px] border border-[#e7ebf2] bg-white/50 p-[13px_14px]" htmlFor="include-rate">
+        <label className="flex cursor-pointer items-center gap-[11px] rounded-[15px] border border-[#e7ebf2] bg-[#f8faff] p-[13px_14px]" htmlFor="include-rate">
           <input
             checked={includeRate}
             id="include-rate"
@@ -159,7 +159,7 @@ function ApplianceForm({ onAdd }) {
           <div>
             <label className="mb-[7px] block text-[0.8rem] font-bold text-[#52627a]" htmlFor="unit-rate">Rate per kWh</label>
             <input
-              className="min-h-12 w-full rounded-[14px] border border-[#e4eaf2] bg-white/80 px-[14px] text-[0.9rem] text-[#24344c] outline-none transition-all placeholder:text-[#a5afbd] hover:border-[#c8d4ee] hover:bg-white focus:border-[#7694ed] focus:bg-white focus:ring-4 focus:ring-[#5d7de2]/[0.13]"
+              className="min-h-12 w-full rounded-[14px] border border-[#e4eaf2] bg-white px-[14px] text-[0.9rem] text-[#24344c] outline-none transition-colors placeholder:text-[#a5afbd] hover:border-[#c8d4ee] focus:border-[#7694ed] focus:ring-4 focus:ring-[#5d7de2]/[0.13]"
               id="unit-rate"
               min="0"
               onChange={(event) => setRate(event.target.value)}
@@ -172,7 +172,7 @@ function ApplianceForm({ onAdd }) {
           </div>
         )}
 
-        <div className="flex items-center justify-between gap-4 rounded-[17px] border border-[#aec6ff]/45 bg-gradient-to-r from-[#eef4ff]/90 to-[#effcf8]/80 p-[15px_17px]" aria-live="polite">
+        <div className="flex items-center justify-between gap-4 rounded-[17px] border border-[#dce5f8] bg-gradient-to-r from-[#eef4ff] to-[#effcf8] p-[15px_17px]" aria-live="polite">
           <div className="text-[0.75rem] text-[#79889e]">
             <strong className="mb-[3px] block text-[0.83rem] text-[#40536f]">Live estimate</strong>
             Based on {days > 0 ? `${days} ${days === 1 ? 'day' : 'days'}` : 'your selected period'}
@@ -191,7 +191,7 @@ function ApplianceForm({ onAdd }) {
           </div>
         </div>
 
-        <button className="flex min-h-[51px] cursor-pointer items-center justify-center gap-[9px] rounded-[15px] border-0 bg-gradient-to-r from-[#5278e6] to-[#695cdb] text-[0.92rem] font-extrabold text-white shadow-[0_10px_22px_rgba(89,105,222,0.24)] transition hover:-translate-y-0.5 hover:shadow-[0_14px_28px_rgba(89,105,222,0.3)] hover:saturate-[1.12] active:translate-y-0 [&_svg]:size-[18px]" type="submit">
+        <button className="flex min-h-[51px] cursor-pointer items-center justify-center gap-[9px] rounded-[15px] border-0 bg-gradient-to-r from-[#5278e6] to-[#695cdb] text-[0.92rem] font-extrabold text-white shadow-[0_8px_18px_rgba(89,105,222,0.2)] transition-colors hover:from-[#466bd5] hover:to-[#5d50cc] active:translate-y-0 [&_svg]:size-[18px]" type="submit">
           Add estimate
           <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
@@ -202,4 +202,4 @@ function ApplianceForm({ onAdd }) {
   )
 }
 
-export default ApplianceForm
+export default memo(ApplianceForm)

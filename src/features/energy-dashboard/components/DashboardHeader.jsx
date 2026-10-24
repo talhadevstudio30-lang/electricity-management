@@ -1,3 +1,5 @@
+import { memo } from 'react'
+
 function DashboardHeader() {
   return (
     <header className="mb-[46px] flex items-center justify-between gap-6 max-sm:mb-[34px]">
@@ -17,4 +19,4 @@ function DashboardHeader() {
   )
 }
 
-export default DashboardHeader
+export default memo(DashboardHeader)

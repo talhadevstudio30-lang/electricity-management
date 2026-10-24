@@ -13,7 +13,7 @@ Wattwise is a lightweight, responsive web app for estimating the electricity use
 - **Saved appliance history:** Add and remove estimates; history is stored in the current browser.
 - **Search and sorting:** Search appliance names and sort by most recent or highest estimated usage.
 - **CSV export:** Export the estimates currently shown in the history list.
-- **Responsive interface:** Layout adapts to smaller screens and uses Tailwind CSS utilities for styling, transitions, and glass effects.
+- **Responsive, lightweight interface:** Solid high-contrast surfaces, Tailwind utilities, lightweight transitions, and system fonts avoid expensive backdrop filters and external font requests.
 
 ## How the calculation works
 
